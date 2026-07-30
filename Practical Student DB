@@ -1,0 +1,55 @@
+CREATE DATABASE College;
+
+
+USE College;
+
+
+CREATE TABLE Student (
+    Student_ID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Department VARCHAR(30),
+    City VARCHAR(30)
+);
+
+INSERT INTO Student VALUES
+(101, 'Arun', 18, 'CSE', 'Chennai'),
+(102, 'Bala', 19, 'ECE', 'Coimbatore'),
+(103, 'Charan', 21, 'IT', 'Madurai'),
+(104, 'Deepa', 22, 'CSE', 'Trichy'),
+(105, 'Eswar', 20, 'EEE', 'Salem'),
+(106, 'Farha', 23, 'IT', 'Chennai'),
+(107, 'Gokul', 24, 'ECE', 'Erode'),
+(108, 'Hari', 19, 'MECH', 'Vellore'),
+(109, 'Isha', 21, 'CSE', 'Tirunelveli'),
+(110, 'Jaya', 22, 'IT', 'Thanjavur');
+
+
+SELECT * FROM Student;
+
+UPDATE Student
+SET Department = 'AI & DS',
+    Age = 21
+WHERE Student_ID = 101;
+
+
+SELECT * FROM Student;
+
+
+ALTER TABLE Student
+ADD Phone VARCHAR(15);
+
+
+DESC Student;
+
+
+DELETE FROM Student
+WHERE Student_ID = 110;
+
+ 
+SELECT * FROM Student;
+
+
+SELECT *
+FROM Student
+WHERE Age > 20;
