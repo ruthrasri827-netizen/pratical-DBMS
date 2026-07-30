@@ -1,0 +1,2 @@
+# pratical-DBMS
+Student db
