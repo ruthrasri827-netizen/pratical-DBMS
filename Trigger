@@ -1,0 +1,14 @@
+CREATE TABLE Student (
+    id INT,
+    name VARCHAR(50)
+);
+
+CREATE TABLE Student_Log (
+    message VARCHAR(100)
+);
+
+CREATE TRIGGER student_insert
+AFTER INSERT ON Student
+FOR EACH ROW
+INSERT INTO Student_Log
+VALUES ('New student inserted');
