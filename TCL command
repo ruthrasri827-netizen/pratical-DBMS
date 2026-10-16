@@ -1,0 +1,30 @@
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    dept VARCHAR(30)
+);
+
+-- INSERT
+INSERT INTO student VALUES
+(101, 'Ruthra', 20, 'IT'),
+(102, 'Nisha', 19, 'CS'),
+(103, 'Ishu', 21, 'AI');
+
+-- SELECT
+SELECT * FROM student;
+
+-- UPDATE
+UPDATE student
+SET age = 22
+WHERE student_id = 101;
+
+-- DELETE
+DELETE FROM student
+WHERE student_id = 103;
+
+-- Display final table
+SELECT * FROM student;
