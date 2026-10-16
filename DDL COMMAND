@@ -1,0 +1,17 @@
+CREATE DATABASE college;
+USE college;
+
+CREATE TABLE student (
+    student_id INT,
+    name VARCHAR(50),
+    age INT,
+    dept VARCHAR(30)
+);
+
+ALTER TABLE student ADD email VARCHAR(50);
+
+RENAME TABLE student TO student_details;
+
+TRUNCATE TABLE student_details;
+
+DROP TABLE student_details;
