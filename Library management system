@@ -1,0 +1,58 @@
+SET SERVEROUTPUT ON;
+
+CREATE TABLE Library (
+    book_id NUMBER PRIMARY KEY,
+    book_name VARCHAR2(50),
+    author VARCHAR2(50),
+    status VARCHAR2(20)
+);
+
+INSERT INTO Library VALUES (1, 'Java', 'James', 'Available');
+INSERT INTO Library VALUES (2, 'Python', 'Guido', 'Available');
+INSERT INTO Library VALUES (3, 'SQL', 'Date', 'Available');
+
+DECLARE
+    v_id NUMBER := &book_id;
+    v_choice NUMBER := &choice;
+    v_name Library.book_name%TYPE;
+BEGIN
+    IF v_choice = 1 THEN
+        UPDATE Library
+        SET status = 'Issued'
+        WHERE book_id = v_id AND status = 'Available';
+
+        IF SQL%ROWCOUNT > 0 THEN
+            DBMS_OUTPUT.PUT_LINE('Book issued successfully');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('Book not available');
+        END IF;
+
+    ELSIF v_choice = 2 THEN
+        UPDATE Library
+        SET status = 'Available'
+        WHERE book_id = v_id AND status = 'Issued';
+
+        IF SQL%ROWCOUNT > 0 THEN
+            DBMS_OUTPUT.PUT_LINE('Book returned successfully');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('Book not issued');
+        END IF;
+
+    ELSIF v_choice = 3 THEN
+        FOR b IN (SELECT * FROM Library ORDER BY book_id)
+        LOOP
+            DBMS_OUTPUT.PUT_LINE(
+                b.book_id || ' - ' ||
+                b.book_name || ' - ' ||
+                b.author || ' - ' ||
+                b.status
+            );
+        END LOOP;
+
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Invalid choice');
+    END IF;
+
+    COMMIT;
+END;
+/
