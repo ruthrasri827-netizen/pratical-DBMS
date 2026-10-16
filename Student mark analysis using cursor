@@ -1,0 +1,30 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR c_student IS
+        SELECT name, mark FROM Student;
+
+    v_name Student.name%TYPE;
+    v_mark Student.mark%TYPE;
+
+BEGIN
+    OPEN c_student;
+
+    LOOP
+        FETCH c_student INTO v_name, v_mark;
+        EXIT WHEN c_student%NOTFOUND;
+
+        IF v_mark >= 90 THEN
+            DBMS_OUTPUT.PUT_LINE(v_name || ' - Grade A');
+        ELSIF v_mark >= 75 THEN
+            DBMS_OUTPUT.PUT_LINE(v_name || ' - Grade B');
+        ELSIF v_mark >= 50 THEN
+            DBMS_OUTPUT.PUT_LINE(v_name || ' - Grade C');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE(v_name || ' - Fail');
+        END IF;
+    END LOOP;
+
+    CLOSE c_student;
+END;
+/
